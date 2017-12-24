@@ -10,7 +10,7 @@ import (
 	"github.com/packethost/packngo"
 )
 
-func TestAccPacketSSHKey_Basic(t *testing.T) {
+func TestAccPacketSSHKeyBasic(t *testing.T) {
 	var key packngo.SSHKey
 	rInt := acctest.RandInt()
 	publicKeyMaterial, _, err := acctest.RandSSHKeyPair("")
@@ -24,7 +24,7 @@ func TestAccPacketSSHKey_Basic(t *testing.T) {
 		CheckDestroy: testAccCheckPacketSSHKeyDestroy,
 		Steps: []resource.TestStep{
 			{
-				Config: testAccCheckPacketSSHKeyConfig_basic(rInt, publicKeyMaterial),
+				Config: testAccCheckPacketSSHKeyConfigBasic(rInt, publicKeyMaterial),
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckPacketSSHKeyExists("packet_ssh_key.foobar", &key),
 					resource.TestCheckResourceAttr(
@@ -79,7 +79,7 @@ func testAccCheckPacketSSHKeyExists(n string, key *packngo.SSHKey) resource.Test
 	}
 }
 
-func testAccCheckPacketSSHKeyConfig_basic(rInt int, publicSshKey string) string {
+func testAccCheckPacketSSHKeyConfigBasic(rInt int, publicSshKey string) string {
 	return fmt.Sprintf(`
 resource "packet_ssh_key" "foobar" {
     name = "foobar-%d"

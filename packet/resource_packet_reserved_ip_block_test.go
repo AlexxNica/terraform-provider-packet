@@ -10,7 +10,7 @@ import (
 	"github.com/packethost/packngo"
 )
 
-func TestAccPacketReservedIPBlock_Basic(t *testing.T) {
+func TestAccPacketReservedIPBlockBasic(t *testing.T) {
 
 	rs := acctest.RandString(10)
 
@@ -20,7 +20,7 @@ func TestAccPacketReservedIPBlock_Basic(t *testing.T) {
 		CheckDestroy: testAccCheckPacketReservedIPBlockDestroy,
 		Steps: []resource.TestStep{
 			resource.TestStep{
-				Config: testAccCheckPacketReservedIPBlockConfig_basic(rs),
+				Config: testAccCheckPacketReservedIPBlockConfigBasic(rs),
 				Check: resource.ComposeTestCheckFunc(
 					resource.TestCheckResourceAttr(
 						"packet_reserved_ip_block.test", "facility", "ewr1"),
@@ -48,7 +48,7 @@ func TestAccPacketReservedIPBlock_importBasic(t *testing.T) {
 		CheckDestroy: testAccCheckPacketReservedIPBlockDestroy,
 		Steps: []resource.TestStep{
 			resource.TestStep{
-				Config: testAccCheckPacketReservedIPBlockConfig_basic(rs),
+				Config: testAccCheckPacketReservedIPBlockConfigBasic(rs),
 			},
 			resource.TestStep{
 				ResourceName:      "packet_reserved_ip_block.test",
@@ -74,7 +74,7 @@ func testAccCheckPacketReservedIPBlockDestroy(s *terraform.State) error {
 	return nil
 }
 
-func testAccCheckPacketReservedIPBlockConfig_basic(name string) string {
+func testAccCheckPacketReservedIPBlockConfigBasic(name string) string {
 	return fmt.Sprintf(`
 resource "packet_project" "foobar" {
     name = "%s"

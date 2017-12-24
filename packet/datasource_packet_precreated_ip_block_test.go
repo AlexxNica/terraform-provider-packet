@@ -8,7 +8,7 @@ import (
 	"github.com/hashicorp/terraform/helper/resource"
 )
 
-func TestAccPacketPreCreatedIPBlock_Basic(t *testing.T) {
+func TestAccPacketPreCreatedIPBlockBasic(t *testing.T) {
 
 	rs := acctest.RandString(10)
 
@@ -17,7 +17,7 @@ func TestAccPacketPreCreatedIPBlock_Basic(t *testing.T) {
 		Providers: testAccProviders,
 		Steps: []resource.TestStep{
 			resource.TestStep{
-				Config: testPreCreatedIPBlockConfig_Basic(rs),
+				Config: testPreCreatedIPBlockConfigBasic(rs),
 				Check: resource.ComposeTestCheckFunc(
 					resource.TestCheckResourceAttrSet(
 						"data.packet_precreated_ip_block.test", "cidr_notation"),
@@ -35,7 +35,7 @@ func TestAccPacketPreCreatedIPBlock_Basic(t *testing.T) {
 	})
 }
 
-func testPreCreatedIPBlockConfig_Basic(name string) string {
+func testPreCreatedIPBlockConfigBasic(name string) string {
 	return fmt.Sprintf(`
 
 resource "packet_project" "test" {

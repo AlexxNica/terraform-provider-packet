@@ -10,7 +10,7 @@ import (
 	"github.com/packethost/packngo"
 )
 
-func TestAccPacketIPAttachment_Basic(t *testing.T) {
+func TestAccPacketIPAttachmentBasic(t *testing.T) {
 
 	rs := acctest.RandString(10)
 
@@ -20,7 +20,7 @@ func TestAccPacketIPAttachment_Basic(t *testing.T) {
 		CheckDestroy: testAccCheckPacketIPAttachmentDestroy,
 		Steps: []resource.TestStep{
 			resource.TestStep{
-				Config: testAccCheckPacketIPAttachmentConfig_Basic(rs),
+				Config: testAccCheckPacketIPAttachmentConfigBasic(rs),
 				Check: resource.ComposeTestCheckFunc(
 					resource.TestCheckResourceAttr(
 						"packet_ip_attachment.test", "public", "true"),
@@ -53,7 +53,7 @@ func testAccCheckPacketIPAttachmentDestroy(s *terraform.State) error {
 	return nil
 }
 
-func testAccCheckPacketIPAttachmentConfig_Basic(name string) string {
+func testAccCheckPacketIPAttachmentConfigBasic(name string) string {
 	return fmt.Sprintf(`
 resource "packet_project" "test" {
     name = "%s"

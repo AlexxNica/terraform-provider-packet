@@ -10,7 +10,7 @@ import (
 	"github.com/packethost/packngo"
 )
 
-func TestAccPacketVolume_Basic(t *testing.T) {
+func TestAccPacketVolumeBasic(t *testing.T) {
 	var volume packngo.Volume
 
 	rs := acctest.RandString(10)
@@ -21,7 +21,7 @@ func TestAccPacketVolume_Basic(t *testing.T) {
 		CheckDestroy: testAccCheckPacketVolumeDestroy,
 		Steps: []resource.TestStep{
 			resource.TestStep{
-				Config: fmt.Sprintf(testAccCheckPacketVolumeConfig_basic, rs),
+				Config: fmt.Sprintf(testAccCheckPacketVolumeConfigBasic, rs),
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckPacketVolumeExists("packet_volume.foobar", &volume),
 					resource.TestCheckResourceAttr(
@@ -77,7 +77,7 @@ func testAccCheckPacketVolumeExists(n string, volume *packngo.Volume) resource.T
 	}
 }
 
-const testAccCheckPacketVolumeConfig_basic = `
+const testAccCheckPacketVolumeConfigBasic = `
 resource "packet_project" "foobar" {
     name = "%s"
 }

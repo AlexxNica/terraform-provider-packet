@@ -10,7 +10,7 @@ import (
 	"github.com/packethost/packngo"
 )
 
-func TestAccPacketVolumeAttachment_Basic(t *testing.T) {
+func TestAccPacketVolumeAttachmentBasic(t *testing.T) {
 	rs := acctest.RandString(10)
 
 	resource.Test(t, resource.TestCase{
@@ -19,7 +19,7 @@ func TestAccPacketVolumeAttachment_Basic(t *testing.T) {
 		CheckDestroy: testAccCheckPacketVolumeAttachmentDestroy,
 		Steps: []resource.TestStep{
 			resource.TestStep{
-				Config: testAccCheckPacketVolumeAttachmentConfig_basic(rs),
+				Config: testAccCheckPacketVolumeAttachmentConfigBasic(rs),
 				Check: resource.ComposeTestCheckFunc(
 					resource.TestCheckResourceAttrPair(
 						"packet_volume_attachment.test", "volume_id",
@@ -53,7 +53,7 @@ func testAccCheckPacketVolumeAttachmentDestroy(s *terraform.State) error {
 	return nil
 }
 
-func testAccCheckPacketVolumeAttachmentConfig_basic(name string) string {
+func testAccCheckPacketVolumeAttachmentConfigBasic(name string) string {
 	return fmt.Sprintf(`
 resource "packet_project" "test" {
     name = "%s"

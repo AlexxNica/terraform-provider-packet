@@ -9,7 +9,7 @@ import (
 	"github.com/packethost/packngo"
 )
 
-func TestAccPacketProject_Basic(t *testing.T) {
+func TestAccPacketProjectBasic(t *testing.T) {
 	var project packngo.Project
 
 	resource.Test(t, resource.TestCase{
@@ -18,7 +18,7 @@ func TestAccPacketProject_Basic(t *testing.T) {
 		CheckDestroy: testAccCheckPacketProjectDestroy,
 		Steps: []resource.TestStep{
 			resource.TestStep{
-				Config: testAccCheckPacketProjectConfig_basic,
+				Config: testAccCheckPacketProjectConfigBasic,
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckPacketProjectExists("packet_project.foobar", &project),
 					testAccCheckPacketProjectAttributes(&project),
@@ -80,7 +80,7 @@ func testAccCheckPacketProjectExists(n string, project *packngo.Project) resourc
 	}
 }
 
-var testAccCheckPacketProjectConfig_basic = fmt.Sprintf(`
+var testAccCheckPacketProjectConfigBasic = fmt.Sprintf(`
 resource "packet_project" "foobar" {
     name = "foobar"
 }`)
